@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Takshashila University – Feedback</title>
+  <style>
+    /* ---------- Global Reset & Fonts ---------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f4f9;
+      color: #333;
+    }
+
+    /* ---------- Header with Background ---------- */
+    header {
+      position: relative;
+      text-align: center;
+      color: white;
+      padding: 10rem 1rem;
+      background: url('https://takshashilauniv.ac.in/wp-content/uploads/2025/03/infrastructure-2.webp') center/cover no-repeat;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 47, 72, 0.6);
+    }
+    header h1, header p {
+      position: relative;
+      margin: 0;
+      z-index: 1;
+    }
+    header h1 {
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- Form Container ---------- */
+    .container {
+      max-width: 1500px;
+      margin: 0.5rem auto 3rem;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      color: #1c2f48;
+      margin-bottom: 0.6rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #1c2f48;
+      box-shadow: 0 0 8px rgba(28, 47, 72, 0.3);
+      outline: none;
+    }
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    /* ---------- Star Rating ---------- */
+    .stars {
+      display: flex;
+      gap: 8px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .star {
+      color: #bbb;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .star.active {
+      color: #ffcc00;
+      transform: scale(1.3);
+    }
+
+    /* ---------- Submit Button ---------- */
+    button {
+      width: 100%;
+      background: #1c2f48;
+      color: white;
+      padding: 1.1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #16213e;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Feedback List ---------- */
+    .feedback-list {
+      margin-top: 1rem;
+    }
+    .feedback-item {
+      background: #f6f8fa;
+      border-left: 5px solid #1c2f48;
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1.4rem;
+    }
+    .feedback-item h4 {
+      margin: 0 0 0.4rem;
+      color: #1c2f48;
+    }
+    .feedback-item p {
+      margin: 0.3rem 0;
+    }
+    .rating-display {
+      color: #ffcc00;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Takshashila University</h1>
+    <p>Faculty & Course Feedback Portal</p>
+  </header>
+
+  <div class="container">
+    <form id="feedbackForm">
+      <div class="form-group">
+        <label for="studentName">Your Name</label>
+        <input type="text" id="studentName" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="course">Select Course</label>
+        <select id="course" required>
+          <option value="">-- Choose a Course --</option>
+          <option>B.Tech Computer Science</option>
+          <option>B.Sc Physics</option>
+          <option>B.Com</option>
+          <option>BCA</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="faculty">Select Faculty</label>
+        <select id="faculty" required>
+          <option value="">-- Choose a Faculty --</option>
+          <option>Dr. Vijayakumar (CS)</option>
+          <option>Prof.Bharathidhasan</option>
+          <option>Mr.Pal</option>
+          <option>Mr.Raj</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Rate Faculty</label>
+        <div class="stars" id="ratingStars">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Your Feedback</label>
+        <textarea id="comments" placeholder="Write your feedback..." required></textarea>
+      </div>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <div class="feedback-list" id="feedbackList">
+      <h3>Recent Feedback</h3>
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('.star');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = star.dataset.value;
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < selectedRating; i++) {
+          stars[i].classList.add('active');
+        }
+      });
+    });
+
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackList = document.getElementById('feedbackList');
+
+    function loadFeedbacks() {
+      const feedbacks = JSON.parse(localStorage.getItem('facultyFeedbacks')) || [];
+      feedbackList.innerHTML = '<h3>Recent Feedback</h3>';
+      feedbacks.forEach(fb => {
+        const item = document.createElement('div');
+        item.className = 'feedback-item';
+        item.innerHTML = `
+          <h4>${fb.name} (${fb.course})</h4>
+          <p><strong>Faculty:</strong> ${fb.faculty}</p>
+          <p class="rating-display">⭐ ${fb.rating}/5</p>
+          <p>${fb.comments}</p>
+        `;
+        feedbackList.appendChild(item);
+      });
+    }
+
+    feedbackForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (selectedRating === 0) {
+        alert("Please select a rating.");
+        return;
+      }
+      const feedback = {
+        name: document.getElementById('studentName').value,
+        course: document.getElementById('course').value,
+        faculty: document.getElementById('faculty').value,
+        rating: selectedRating,
+        comments: document.getElementById('comments').value
+      };
+      const feedbacks = JSON.parse(localStorage.getItem('facultyFeedbacks')) || [];
+      feedbacks.unshift(feedback);
+      localStorage.setItem('facultyFeedbacks', JSON.stringify(feedbacks));
+      feedbackForm.reset();
+      selectedRating = 0;
+      stars.forEach(s => s.classList.remove('active'));
+      loadFeedbacks();
+    });
+
+    window.onload = loadFeedbacks;
+  </script>
+
+</body>
+</html>
