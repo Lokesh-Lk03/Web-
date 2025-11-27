@@ -1,0 +1,84 @@
+
+from tkinter import *
+root=Tk()
+root.title("simple calculator")
+root.geometry("500x700")
+
+def add():
+    a=int(e1.get())
+    b=int(e2.get())
+    add=a+b
+    e3.delete(0,END)
+    e3.insert(0,str(add))
+    return
+def sub():
+    a=int(e1.get())
+    b=int(e2.get())
+    sub=a-b
+    e3.delete(0,END)
+    e3.insert(0,str(sub))
+    return
+def mul():
+    a=int(e1.get())
+    b=int(e2.get())
+    mul=a*b
+    e3.delete(0,END)
+    e3.insert(0,str(mul))
+    return
+def div():
+    a=int(e1.get())
+    b=int(e2.get())
+    div=a/b
+    e3.delete(0,END)
+    e3.insert(0,str(div))
+    return
+def mod():
+    a=int(e1.get())
+    b=int(e2.get())
+    mod=a%b
+    e3.delete(0,END)
+    e3.insert(0,str(mod))
+    return
+    
+f1=Frame(root)
+f1.config(bg="GREENYELLOW")
+f1.pack(fill="both",expand=0)
+l1=Label(f1,text="ARITHMETIC OPERATION",bg="GREENYELLOW",fg="WHITE",font=("Arial",18,"bold"))
+l1.pack()
+
+f2=Frame(root)
+f2.config(bg="GREEN1")
+f2.pack(fill="both",expand=0)
+
+l2=Label(f2,text="Enter the First Number",bg="GREEN1")
+l2.pack()
+e1=Entry(f2)
+e1.pack()
+
+l3=Label(f2,text="Enter the Second Number",bg="GREEN1")
+l3.pack()
+e2=Entry(f2)
+e2.pack()
+
+l4=Label(f2,text="ANSWER",bg="GREEN1")
+l4.pack()
+e3=Entry(f2)
+e3.pack()
+b1=Button(f2,text="ADD",command=add)
+b1.pack()
+
+b2=Button(f2,text="SUB",command=sub)
+b2.pack()
+
+b3=Button(f2,text="MUL",command=mul)
+b3.pack()
+
+b4=Button(f2,text="DIV",command=div)
+b4.pack()
+
+b5=Button(f2,text="MOD",command=mod)
+b5.pack()
+root.mainloop()
+
+
+
