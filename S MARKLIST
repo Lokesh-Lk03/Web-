@@ -1,0 +1,75 @@
+from tkinter import *
+root=Tk()
+root.title("STUDENT MARKLIST")
+root.geometry("500x700")
+
+def click():
+     a=e3.get()
+     b=e4.get()
+     c=e5.get()
+     total=int(a)+int(b)+int(c)
+     average=total/3
+     e6.delete(0,END)
+     e6.insert(0,str(total))
+     e7.delete(0,END)
+     e7.insert(0,str(average))
+     return
+
+f1=Frame(root)
+f1.config(bg="DARKSEAGREEN1")
+f1.pack(fill="both",expand=0)
+l1=Label(f1,text="TAKSHASHILA UNIVERSITY,",bg="DARKSEAGREEN1",fg="BLACK",font=("Arial",18,"bold"))
+l1.pack()
+
+l2=Label(f1,text="ONGUR,TINDIVANAM,VILLUPURAM",bg="DARKSEAGREEN1",fg="BLACK",font=("Arial",14,"bold"))
+l2.pack()
+f2=Frame(root)
+
+f2.config(bg="DARKSLATEGRAY1")
+f2.pack(fill="both",expand=0)
+l3=Label(f2,text="STUDENT MARK LIST",bg="DARKSLATEGRAY1",fg="BLACK",font=("Arial",12,"bold"))
+l3.pack()
+
+f3=Frame(root)
+f3.config(bg="DEEPSKYBLUE")
+f3.pack(fill="both",expand=0)
+l4=Label(f3,text="ENROLLMENT NO",bg="DEEPSKYBLUE",fg="BLACK")
+l4.pack()
+e1=Entry(f3)
+e1.pack()
+
+l5=Label(f3,text="NAME",bg="DEEPSKYBLUE",fg="BLACK")
+l5.pack()
+e2=Entry(f3)
+e2.pack()
+
+l6=Label(f3,text="PYTHON",bg="DEEPSKYBLUE",fg="BLACK")
+l6.pack()
+e3=Entry(f3)
+e3.pack()
+
+l7=Label(f3,text="DBMS",bg="DEEPSKYBLUE",fg="BLACK")
+l7.pack()
+e4=Entry(f3)
+e4.pack()
+
+l8=Label(f3,text="XEBIA",bg="DEEPSKYBLUE",fg="BLACK")
+l8.pack()
+e5=Entry(f3)
+e5.pack()
+
+l9=Label(f3,text="TOTAL",bg="DEEPSKYBLUE",fg="BLACK")
+l9.pack()
+e6=Entry(f3)
+e6.pack()
+
+l0=Label(f3,text="AVERAGE",bg="DEEPSKYBLUE",fg="BLACK")
+l0.pack()
+e7=Entry(f3)
+e7.pack()
+
+b1=Button(f3,text="CLICK",command=click)
+b1.pack()
+
+
+
