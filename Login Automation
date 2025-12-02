@@ -1,0 +1,18 @@
+package com.bca;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+public class EX3 {
+@Test
+public void loginTest() {
+ WebDriver driver = new EdgeDriver();
+ driver.get("https://practicetestautomation.com/practice-testlogin/");
+ driver.findElement(By.id("username")).sendKeys("student");
+ 
+driver.findElement(By.id("password")).sendKeys("Password123");
+ driver.findElement(By.id("submit")).click();
+ driver.getTitle();
+ driver.quit();
+}
+}
