@@ -1,0 +1,12 @@
+package com.bca;
+import org.testng.annotations.Test;
+public class EX1 {
+@Test(priority=2, groups="smoke")
+public void logoutTest() {
+ System.out.println("Logout Test");
+}
+@Test(priority=1, groups="regression")
+public void loginTest() {
+ System.out.println("Login Test");
+}
+}
