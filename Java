@@ -1,0 +1,44 @@
+import java.awt.*;
+
+class login_Demo
+{
+
+public static void main(String-arg[])
+
+{
+
+Frame f = new Frame();
+
+f.setTitle(“login page”);
+
+f.setSize(500,500);
+
+f.setVisible(true);
+
+Label l1 = new Label(“User name”);
+
+f.add(l1);
+
+Text field t1 = new text field(20);
+
+f.add(t1);
+
+Label l2 = new Label(“Password”);
+
+f.add(l2);
+
+Text field t2 = new textfield(20);
+
+f.add(t2);
+
+Button b1 = new button(“login”);
+
+f.add(b1);
+
+Button b2 = new button(“logout”);
+
+f.add(b2);
+
+}
+
+}
