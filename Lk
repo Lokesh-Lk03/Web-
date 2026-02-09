@@ -1,0 +1,52 @@
+Program:
+
+Import Java.io.*;
+
+class Taksha
+{
+
+Public static void main (string args[])
+
+{
+
+ISR isr = new ISR (System.in);
+BR br = new BR (isr);
+
+System.out.println ("Takshashila University");
+System.out.println ("Ongur, Tindivanam");
+System.out.println ("-------------------");
+System.out.println ("Student Mark list");
+System.out.println ("-------------------");
+
+System.out.println ("Enter Enrollment no");
+String s1 = br.readline();
+int a = Integer.ParseInt(s1);
+
+System.out.println ("Enter student's name");
+String s2 = br.readline();
+
+System.out.println ("Enter Java mark");
+String s3 = br.readline();
+int m1 = Integer.ParseInt(s3);
+
+System.out.println ("Enter OS mark");
+String s4 = new br.readline();
+int m2 = Integer.ParseInt(s4);
+
+System.out.println ("Enter CWS Mark");
+String s5 = br.readline();
+int m3 = Integer.ParseInt(s5);
+
+tot = m1 + m2 + m3
+
+System.out.println ("Total Mark" + tot);
+
+avg = tot / 3
+
+System.out.println ("Average mark" + avg);
+
+System.out.println ("-------------------");
+
+}
+
+}
